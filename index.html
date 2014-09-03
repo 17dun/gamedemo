@@ -12,39 +12,51 @@
 		body{height:100%;}
 		.wrap{width:100%;overflow: hidden;}
 		.row{list-style: none;margin: 0;padding:0;}
-		.row li{width:25%;height:200px;float: left;}
+		.row li{width:25%;height:0px;float: left;}
 		.myimg{width:100%;height:100%;}
+		.row .clear{width:0;height:0;clear: both}
 	</style>
 
 </head>
 <body>
 	<div class="wrap">
 	<ul class="row">
-		<li><img class="myimg baba" src="baba.jpg"></li>
-		<li><img class="myimg baba" src="baba.jpg"></li>
-		<li><img class="myimg yuebin" src="yuebin.jpg"></li>
-		<li><img class="myimg baba" src="baba.jpg"></li>
-		<li><img class="myimg baba" src="baba.jpg"></li>
-		<li><img class="myimg baba" src="baba.jpg"></li>
-		<li><img class="myimg yuebin" src="yuebin.jpg"></li>
-		<li><img class="myimg baba" src="baba.jpg"></li>
-		<li><img class="myimg baba" src="baba.jpg"></li>
-		<li><img class="myimg yuebin" src="yuebin.jpg"></li>
-		<li><img class="myimg baba" src="baba.jpg"></li>
-		<li><img class="myimg baba" src="baba.jpg"></li>
-		<li><img class="myimg baba" src="baba.jpg"></li>
-		<li><img class="myimg baba" src="baba.jpg"></li>
-		<li><img class="myimg yuebin" src="yuebin.jpg"></li>
-		<li><img class="myimg baba" src="baba.jpg"></li>
-		<li><img class="myimg yuebin" src="yuebin.jpg"></li>
-		<li><img class="myimg baba" src="baba.jpg"></li>
-		<li><img class="myimg baba" src="baba.jpg"></li>
-		<li><img class="myimg baba" src="baba.jpg"></li>
+		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
+		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
+		<li class="cell"><img class="myimg yuebin" src="yuebin.jpg"></li>
+		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
+		<li class="clear"></li>
+		
 	</ul>
+	<ul class="row">
+		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
+		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
+		<li class="cell"><img class="myimg yuebin" src="yuebin.jpg"></li>
+		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
+		<li class="clear"></li>
+	</ul>
+	<ul class="row">
+		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
+		<li class="cell"><img class="myimg yuebin" src="yuebin.jpg"></li>
+		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
+		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
+		<li class="clear"></li>
+	</ul>
+	<ul class="row">
+		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
+		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
+		<li class="cell"><img class="myimg yuebin" src="yuebin.jpg"></li>
+		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
+		<li class="clear"></li>
+	</ul>
+
+
+
 </div>
 <script>
 	var yuebin = {
 		cellHeight:0,
+		hasNull:true,
 		init:function(){
 			this.initHeight();
 			this.bindEvent();
@@ -52,23 +64,31 @@
 		},
 		initHeight:function(){
 			this.cellHeight  = cellHeight = document.documentElement.clientHeight/4;
-			$('.row li').css({'height':cellHeight});
+			$('.row').css({'height':cellHeight})
+			$('.row .cell').css({'height':cellHeight});
+
 			$('.row').css({'marginTop':-cellHeight})
+
 			$('.wrap').css({'height':document.documentElement.clientHeight});
 		},
 		bindEvent:function(){
 			var me = this;
-			$('.row').on('click',function(e){
+			$('.wrap').on('click',function(e){
 				var $target = $(e.target);
 				var $yuebins = $('.yuebin');
+
+				console.log($target[0]);
+				console.log($yuebins.last()[0]);
 				if($target.hasClass('baba')){
 					me.die();
 				}else if($target[0] == $yuebins.last()[0]){
+					$target.attr('src','yuebin-eat.jpg');
+					$target.removeClass('yuebin');
 					me.next();
 				}else{
 					return false;
 				}
-			})			
+			})
 		},
 		die:function(){
 			alert('踩到粑粑，游戏结束')
@@ -77,12 +97,12 @@
 			var clientHeight = this.clientHeight;
 			//生成0,1,2,3
 			var index  = Math.floor(Math.random()*100/25);
-			var html = $('<li><img class="myimg baba" src="baba.jpg"></li><li><img class="myimg baba" src="baba.jpg"></li><li><img class="myimg baba" src="baba.jpg"></li><li><img class="myimg baba" src="baba.jpg"></li>');
-
-			$('.row').prepend(html);
+			var html = $('<ul class="row"><li class="cell"><img class="myimg baba" src="baba.jpg"></li><li class="cell"><img class="myimg baba" src="baba.jpg"></li><li class="cell"><img class="myimg baba" src="baba.jpg"></li><li class="cell"><img class="myimg baba" src="baba.jpg"></li></ul>');
+			$('.wrap').prepend(html);
 			
 			this.initHeight();
-			// $('li').eq(0).animate({
+
+			// $($('.row').first().find('li')[0]).animate({
 			// 	height:clientHeight
 			// },500,'ease-in')
 			var $newyuebin = $('.myimg').eq(index);
@@ -92,13 +112,11 @@
 			$newyuebin.attr('src','yuebin.jpg');
 			
 			//开始往下展现
-
-			$('.row li').last().remove();
-			$('.row li').last().remove();
-			$('.row li').last().remove();
-			$('.row li').last().remove();
-			
-
+			if(this.hasNull){
+				this.hasNull = false;
+			}else{
+				$('.row').last().remove();
+			}
 		}
 
 
