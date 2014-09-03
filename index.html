@@ -26,14 +26,6 @@
 		<li class="cell"><img class="myimg yuebin" src="yuebin.jpg"></li>
 		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
 		<li class="clear"></li>
-		
-	</ul>
-	<ul class="row">
-		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
-		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
-		<li class="cell"><img class="myimg yuebin" src="yuebin.jpg"></li>
-		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
-		<li class="clear"></li>
 	</ul>
 	<ul class="row">
 		<li class="cell"><img class="myimg baba" src="baba.jpg"></li>
@@ -67,7 +59,7 @@
 			$('.row').css({'height':cellHeight})
 			$('.row .cell').css({'height':cellHeight});
 
-			$('.row').css({'marginTop':-cellHeight})
+			//$('.row').css({'marginTop':-cellHeight})
 
 			$('.wrap').css({'height':document.documentElement.clientHeight});
 		},
@@ -97,14 +89,12 @@
 			var clientHeight = this.clientHeight;
 			//生成0,1,2,3
 			var index  = Math.floor(Math.random()*100/25);
-			var html = $('<ul class="row"><li class="cell"><img class="myimg baba" src="baba.jpg"></li><li class="cell"><img class="myimg baba" src="baba.jpg"></li><li class="cell"><img class="myimg baba" src="baba.jpg"></li><li class="cell"><img class="myimg baba" src="baba.jpg"></li></ul>');
+			var html = $('<ul class="row" style="margin-top:-120px;"><li class="cell"><img class="myimg baba" src="baba.jpg"></li><li class="cell"><img class="myimg baba" src="baba.jpg"></li><li class="cell"><img class="myimg baba" src="baba.jpg"></li><li class="cell"><img class="myimg baba" src="baba.jpg"></li></ul>');
 			$('.wrap').prepend(html);
 			
 			this.initHeight();
 
-			// $($('.row').first().find('li')[0]).animate({
-			// 	height:clientHeight
-			// },500,'ease-in')
+			
 			var $newyuebin = $('.myimg').eq(index);
 			//替换生成月饼
 			$newyuebin.removeClass('baba');
@@ -114,14 +104,18 @@
 			//开始往下展现
 			if(this.hasNull){
 				this.hasNull = false;
+				$('.row').first().animate({marginTop:0},200,'');
 			}else{
-				$('.row').last().remove();
+				$('.row').first().animate({marginTop:0},200,'',function(){
+					$('.row').last().remove();
+				})
+				
+
 			}
 		}
 
 
 	}
-
 	$(function(){
 		yuebin.init();
 	})
