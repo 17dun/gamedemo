@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>你是我的小苹果</title>
+    <title>全民抢月饼</title>
     <meta charset="utf-8"/>
 	<meta name="viewport" content="initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, width=device-width,target-densitydpi=device-dpi"/>
 
@@ -37,10 +37,10 @@
     #GameTimeLayer {top:1em; left: 0; width:100%; text-align: center; color:#f00; font-size: 4em; text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff;overflow: hidden;}
     #GameLayerBG {top:0;left:0;right:0;bottom:0;overflow:hidden;background:#fff;}
     .GameLayer {position:absolute;bottom:0;left:0;}
-    .block {position:absolute;border-top:1px solid #1D70B6; background-repeat: no-repeat; background-position: center;}
+    .block {position:absolute;border-top:1px solid #B4CBDF; background-repeat: no-repeat; background-position: center;}
     .t1,.t2,.t3,.t4,.t5 { background-size:auto 90%;background-image:url(2.png);}
     .tt1,.tt2,.tt3,.tt4,.tt5 { background-size:auto 86%;background-image:url(3.png);}
-    .bl {border-left:1px solid #1D70B6;}
+    .bl {border-left:1px solid #B4CBDF;}
     @-ms-keyframes flash {
     	0% { opacity: 1; }
     	50% { opacity: 0; }
@@ -87,8 +87,11 @@ display: none;
 	
 	<script type="text/javascript">
 	    window.shareData = {
-	        "tTitle": "你是我的小呀小苹果！",
-	        "tContent": "你是我的小呀小苹果,怎么爱你都不嫌多！"
+	    	"imgUrl": "http://182.254.209.32/game/2.png",
+	        "timeLineLink": "http://182.254.209.32/game",
+	        "tTitle": "你是我的小呀大月饼！",
+	        "tContent": "你是我的小呀大月饼,怎么爱你都不嫌多！",
+
 	    };
 
 	    var body, blockSize, GameLayer = [], GameLayerBG, touchArea = [], GameTimeLayer;
@@ -117,13 +120,12 @@ display: none;
 	        gameInit();
 	        window.addEventListener('resize', refreshSize, false);
 
-		var rtnMsg = "true";	
-				
+		var rtnMsg = "true";
 		setTimeout(function(){
 			if(rtnMsg == 'false'){
 				var btn = document.getElementById('ready-btn');
 				btn.className = 'btn';
-				btn.innerHTML = '您今天已经吃太多苹果啦，请明天继续！' 			
+				btn.innerHTML = '您今天已经吃太多苹果啦，请明天继续！'
 			}else{
 				var btn = document.getElementById('ready-btn');
 				btn.className = 'btn';
@@ -131,7 +133,7 @@ display: none;
 				btn.style.backgroundColor = '#F00';
 				btn.onclick = function(){
 					closeWelcomeLayer();
-				} 					
+				}
 			}
 	        }, 500);
 	    }
@@ -182,9 +184,9 @@ display: none;
 	    }
 	    var _gameBBList = [], _gameBBListIndex = 0, _gameOver = false, _gameStart = false, _gameTime, _gameTimeNum, _gameScore;
 	    function gameInit() {
-	        //createjs.Sound.registerSound({ src: "img/err.mp3", id: "err" });
-	        //createjs.Sound.registerSound({ src: "img/end.mp3", id: "end" });
-	        //createjs.Sound.registerSound({ src: "img/tap.mp3", id: "tap" });
+	    	window.errsd = new Audio("err.mp3");
+	    	window.endsd = new Audio("end.mp3");
+	    	window.tabsd = new Audio("tab.mp3");
 	        gameRestart();
 	    }
 	    function gameRestart() {
@@ -194,7 +196,7 @@ display: none;
 	        _gameScore = 0;
 	        _gameOver = false;
 	        _gameStart = false;
-	        _gameTimeNum = 2000;
+	        _gameTimeNum = 3000;
 	        GameTimeLayer.innerHTML = creatTimeText(_gameTimeNum);
 	        countBlockSize();
 	        refreshGameLayer(GameLayer[0]);
@@ -219,6 +221,7 @@ display: none;
 	            gameOver();
 	            GameLayerBG.className += ' flash';
 	            //createjs.Sound.play("end");
+	            window.endsd.play();
 	        } else {
 	            GameTimeLayer.innerHTML = creatTimeText(_gameTimeNum);
 	        }
@@ -291,6 +294,7 @@ display: none;
 	                gameStart();
 	            }
 	            //createjs.Sound.play("tap");
+	            window.tabsd.play();
 	            tar = document.getElementById(p.id);
 	            tar.className = tar.className.replace(_ttreg, ' tt$1');
 	            _gameBBListIndex++;
@@ -298,6 +302,7 @@ display: none;
 	            gameLayerMoveNextRow();
 	        } else if (_gameStart && !tar.notEmpty) {
 	            //createjs.Sound.play("err");
+	            window.errsd.play();
 	            gameOver();
 	            tar.className += ' bad';
 	        }
@@ -342,7 +347,7 @@ display: none;
 	        }
 	        document.getElementById('GameScoreLayer-bast').innerHTML = '最佳&nbsp;&nbsp;' + bast;
 	        l.style.display = 'block';
-	        window.shareData.tTitle = '我吃掉了' + _gameScore + '个小苹果，不服来挑战！！！'
+	        window.shareData.tTitle = '我抢到了' + _gameScore + '个大月饼，不服来挑战！！！'
 	    }
 	    function hideGameScoreLayer() {
 	        var l = document.getElementById('GameScoreLayer');
@@ -357,19 +362,19 @@ display: none;
 	        hideGameScoreLayer();
 	        showWelcomeLayer();
 	    }
-	    var mebtnopenurl = 'http://www.duoduozhifu.com/game/';
-		var gototop='http://ddqianphp.aliapp.com/game/gzh/readme.html';
+	    var mebtnopenurl = 'http://182.254.209.32/game/';
+		var gototop='http://182.254.209.32/game/';
 	    function shareText(score) {
 	        if (score <= 49)
-	            return '呵呵！我吃掉了'+score+'个小苹果！<br/>亲，还得加油哦!';
+	            return '呵呵！我抢到了'+score+'个大月饼！<br/>亲，还得加油哦!';
 	        if (score <= 99)
-	            return '酷！我吃掉了'+score+'个小苹果！<br/>亲，不错哦！';
+	            return '酷！我抢到了'+score+'个大月饼！<br/>亲，不错哦！';
 	        if (score <= 149)
-	            return '帅呆了！我吃掉了'+score+'个小苹果！<br/>亲，爱死你了！';
+	            return '帅呆了！我抢到了'+score+'个大月饼！<br/>亲，爱死你了！';
 	        if (score <= 199)
-	            return '太牛了！我吃掉了'+score+'个小苹果！<br/>亲，奥巴马和金正恩都惊呆了！';
+	            return '太牛了！我抢到了'+score+'个大月饼！<br/>亲，奥巴马和金正恩都惊呆了！';
 
-	        return '膜拜ing！我吃掉了'+score+'个小苹果！<br/>亲，我想我不是地球人！再也没人能超越我了！';
+	        return '膜拜ing！我抢到了'+score+'个大月饼！<br/>亲，我想我不是地球人！再也没人能超越我了！';
 	    }
 
 	    function toStr(obj) {
@@ -405,32 +410,32 @@ display: none;
 	        };
 	    }
 
-	    // document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+	    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 
-	    //     // WeixinJSBridge.on('menu:share:appmessage', function (argv) {
-	    //     //     WeixinJSBridge.invoke('sendAppMessage', {
-	    //     //         "img_url": window.shareData.imgUrl,
-	    //     //         "link": window.shareData.timeLineLink,
-	    //     //         "desc": window.shareData.tContent,
-	    //     //         "title": window.shareData.tTitle
-	    //     //     }, function (res) {
-	    //     //         document.location.href = mebtnopenurl;
-	    //     //     })
-	    //     // });
+	        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+	            WeixinJSBridge.invoke('sendAppMessage', {
+	                "img_url": window.shareData.imgUrl,
+	                "link": window.shareData.timeLineLink,
+	                "desc": window.shareData.tContent,
+	                "title": window.shareData.tTitle
+	            }, function (res) {
+	                document.location.href = mebtnopenurl;
+	            })
+	        });
 
-	    //     WeixinJSBridge.on('menu:share:timeline', function (argv) {
-	    //         WeixinJSBridge.invoke('shareTimeline', {
-	    //             "img_url": window.shareData.imgUrl,
-	    //             "img_width": "640",
-	    //             "img_height": "640",
-	    //             "link": window.shareData.timeLineLink,
-	    //             "desc": window.shareData.tContent,
-	    //             "title": window.shareData.tTitle
-	    //         }, function (res) {
-	    //             document.location.href = mebtnopenurl;
-	    //         });
-	    //     });
-	    // }, false);
+	        WeixinJSBridge.on('menu:share:timeline', function (argv) {
+	            WeixinJSBridge.invoke('shareTimeline', {
+	                "img_url": window.shareData.imgUrl,
+	                "img_width": "640",
+	                "img_height": "640",
+	                "link": window.shareData.timeLineLink,
+	                "desc": window.shareData.tContent,
+	                "title": window.shareData.tTitle
+	            }, function (res) {
+	                document.location.href = mebtnopenurl;
+	            });
+	        });
+	    }, false);
 </script>
 
 	<div id="GameScoreLayer" class="BBOX SHADE bgc1" style="display:none;">
@@ -445,14 +450,7 @@ display: none;
 				<div class="btn BOX-S" onclick="share()">分享到朋友圈</div>&nbsp;
 			</div>
 			<br/>
-			<div id="GameScoreLayer-share" class="BOX">
-				<div id="mebtn" class="btn BOX-S" onclick="window.open(mebtnopenurl)">&nbsp;更多游戏！</div>
-				
-			</div>
 			<br>
-			<div id="GameScoreLayer-share" class="BOX">
-			<div id="mebtn" class="btn BOX-S" ><a href="http://ddqianphp.aliapp.com/game/gzh/readme.html" style="color:#fff;text-decoration:none;">关注多多智富！</a></div>
-			</div>
 		</div>
 	</div>
 
@@ -460,8 +458,8 @@ display: none;
 		<div class="welcome-bg FILL"></div>
 		<div class="FILL BOX-M" style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:5;">
 			<div style="margin:0 8% 0 9%;">
-				<div style="font-size:2.6em; color:#FEF002;">你爱小苹果吗？</div><br/>
-				<div style="font-size:2.2em; color:#fff; line-height:1.5em;">从最下面的小苹果开始，<br/>20秒内看你能吃掉多少个小苹果！<br/></div><br/><br/>
+				<div style="font-size:2.6em; color:#FEF002;">看谁月饼抢得多</div><br/>
+				<div style="font-size:2.2em; color:#fff; line-height:1.5em;">超不爽啊,有木有？<br/>今年公司又没有发月饼<br/>30秒内看谁抢的月饼多<br/></div><br/><br/>
 				<div id="ready-btn" class="btn loading" style="display:inline-block; margin:0 auto; width:8em; height:1.7em; line-height:1.7em; font-size:2.2em; color:#fff;"></div>
 			<br/><br/>
 		
