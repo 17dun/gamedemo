@@ -7,7 +7,7 @@
     <title>你是我的小苹果</title>
     <meta charset="utf-8"/>
 	<meta name="viewport" content="initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, width=device-width,target-densitydpi=device-dpi"/>
-    <script  type="text/javascript" src="createjs.js"></script>
+
     <script type="text/javascript">
         var isDesktop = navigator['userAgent'].match(/(ipad|iphone|ipod|android|windows phone)/i) ? false : true;
         var fontunit = isDesktop ? 20 : ((window.innerWidth > window.innerHeight ? window.innerHeight : window.innerWidth) / 320) * 10;
@@ -82,25 +82,19 @@ z-index: 10000;
 display: none;
 }
     </style>
-	<!--   <script type="text/javascript" src="scripts/stats.js" charset="UTF-8"></script>-->
 </head>
 <body onload="init()">
 	
 	<script type="text/javascript">
 	    window.shareData = {
-	        "imgUrl": "http://ddqianphp.aliapp.com/game/cxpg/02.jpg",
-	        "timeLineLink": "http://ddqianphp.aliapp.com/game/cxpg",
 	        "tTitle": "你是我的小呀小苹果！",
 	        "tContent": "你是我的小呀小苹果,怎么爱你都不嫌多！"
 	    };
 
-	    if (isDesktop)
-	        document.write('<div id="gameBody">');
-
 	    var body, blockSize, GameLayer = [], GameLayerBG, touchArea = [], GameTimeLayer;
 	    var transform, transitionDuration;
-
 	    function init(argument) {
+
 	        showWelcomeLayer();
 	        body = document.getElementById('gameBody') || document.body;
 	        body.style.height = window.innerHeight + 'px';
@@ -188,9 +182,9 @@ display: none;
 	    }
 	    var _gameBBList = [], _gameBBListIndex = 0, _gameOver = false, _gameStart = false, _gameTime, _gameTimeNum, _gameScore;
 	    function gameInit() {
-	        createjs.Sound.registerSound({ src: "img/err.mp3", id: "err" });
-	        createjs.Sound.registerSound({ src: "img/end.mp3", id: "end" });
-	        createjs.Sound.registerSound({ src: "img/tap.mp3", id: "tap" });
+	        //createjs.Sound.registerSound({ src: "img/err.mp3", id: "err" });
+	        //createjs.Sound.registerSound({ src: "img/end.mp3", id: "end" });
+	        //createjs.Sound.registerSound({ src: "img/tap.mp3", id: "tap" });
 	        gameRestart();
 	    }
 	    function gameRestart() {
@@ -224,7 +218,7 @@ display: none;
 	            GameTimeLayer.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;时间到！';
 	            gameOver();
 	            GameLayerBG.className += ' flash';
-	            createjs.Sound.play("end");
+	            //createjs.Sound.play("end");
 	        } else {
 	            GameTimeLayer.innerHTML = creatTimeText(_gameTimeNum);
 	        }
@@ -296,14 +290,14 @@ display: none;
 	            if (!_gameStart) {
 	                gameStart();
 	            }
-	            createjs.Sound.play("tap");
+	            //createjs.Sound.play("tap");
 	            tar = document.getElementById(p.id);
 	            tar.className = tar.className.replace(_ttreg, ' tt$1');
 	            _gameBBListIndex++;
 	            _gameScore++;
 	            gameLayerMoveNextRow();
 	        } else if (_gameStart && !tar.notEmpty) {
-	            createjs.Sound.play("err");
+	            //createjs.Sound.play("err");
 	            gameOver();
 	            tar.className += ' bad';
 	        }
@@ -411,32 +405,32 @@ display: none;
 	        };
 	    }
 
-	    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+	    // document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 
-	        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
-	            WeixinJSBridge.invoke('sendAppMessage', {
-	                "img_url": window.shareData.imgUrl,
-	                "link": window.shareData.timeLineLink,
-	                "desc": window.shareData.tContent,
-	                "title": window.shareData.tTitle
-	            }, function (res) {
-	                document.location.href = mebtnopenurl;
-	            })
-	        });
+	    //     // WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+	    //     //     WeixinJSBridge.invoke('sendAppMessage', {
+	    //     //         "img_url": window.shareData.imgUrl,
+	    //     //         "link": window.shareData.timeLineLink,
+	    //     //         "desc": window.shareData.tContent,
+	    //     //         "title": window.shareData.tTitle
+	    //     //     }, function (res) {
+	    //     //         document.location.href = mebtnopenurl;
+	    //     //     })
+	    //     // });
 
-	        WeixinJSBridge.on('menu:share:timeline', function (argv) {
-	            WeixinJSBridge.invoke('shareTimeline', {
-	                "img_url": window.shareData.imgUrl,
-	                "img_width": "640",
-	                "img_height": "640",
-	                "link": window.shareData.timeLineLink,
-	                "desc": window.shareData.tContent,
-	                "title": window.shareData.tTitle
-	            }, function (res) {
-	                document.location.href = mebtnopenurl;
-	            });
-	        });
-	    }, false);
+	    //     WeixinJSBridge.on('menu:share:timeline', function (argv) {
+	    //         WeixinJSBridge.invoke('shareTimeline', {
+	    //             "img_url": window.shareData.imgUrl,
+	    //             "img_width": "640",
+	    //             "img_height": "640",
+	    //             "link": window.shareData.timeLineLink,
+	    //             "desc": window.shareData.tContent,
+	    //             "title": window.shareData.tTitle
+	    //         }, function (res) {
+	    //             document.location.href = mebtnopenurl;
+	    //         });
+	    //     });
+	    // }, false);
 </script>
 
 	<div id="GameScoreLayer" class="BBOX SHADE bgc1" style="display:none;">
@@ -470,9 +464,7 @@ display: none;
 				<div style="font-size:2.2em; color:#fff; line-height:1.5em;">从最下面的小苹果开始，<br/>20秒内看你能吃掉多少个小苹果！<br/></div><br/><br/>
 				<div id="ready-btn" class="btn loading" style="display:inline-block; margin:0 auto; width:8em; height:1.7em; line-height:1.7em; font-size:2.2em; color:#fff;"></div>
 			<br/><br/>
-			
-			<div style="font-size:1.2em; color:#fff; line-height:1.5em;">多多智富正为您打造一个收获<br/>智慧、快乐与财富的平台。<br/>点击下方按钮关注公众号<br/></div>
-			<div style="display:inline-block; margin:0 auto; width:8em; height:1em; line-height:1.7em; font-size:1.7em; color:#fff;" ><a href="http://ddqianphp.aliapp.com/game/gzh/readme.html">点击关注</a></div>
+		
 		
 			</div>
 		</div>
@@ -484,10 +476,6 @@ display: none;
 	</div>
 
 	<div id="share-wx"><p style="text-align: right; padding-left: 10px;"><img src="img/2000.png" id="share-wx-img" style="max-width: 280px; padding-right: 25px;"></p></div>
-<script type="text/javascript">
-    if (isDesktop)
-        document.write('</div>');
-</script>
 
 </body>
 </html>
