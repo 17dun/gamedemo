@@ -409,11 +409,6 @@ display: none;
 	    
 
 	    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-
-	    	WeixinApi.ready(function(Api){
-		    	 Api.shareToFriend(window.shareData)
-		    })
-
 	        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
 	            WeixinJSBridge.invoke('sendAppMessage', {
 	                "img_url": window.shareData.imgUrl,
