@@ -184,9 +184,9 @@ display: none;
 	    }
 	    var _gameBBList = [], _gameBBListIndex = 0, _gameOver = false, _gameStart = false, _gameTime, _gameTimeNum, _gameScore;
 	    function gameInit() {
-	    	window.errsd = new Audio("err.mp3");
+	    	window.errsd = new Audio("err.wav");
 	    	window.endsd = new Audio("end.mp3");
-	    	window.tabsd = new Audio("tap.mp3");
+	    	window.tapsd = new Audio("tap.wav");
 	        gameRestart();
 	    }
 	    function gameRestart() {
@@ -294,7 +294,7 @@ display: none;
 	                gameStart();
 	            }
 	            //createjs.Sound.play("tap");
-	            window.tabsd.play();
+	            window.tapsd.play();
 	            tar = document.getElementById(p.id);
 	            tar.className = tar.className.replace(_ttreg, ' tt$1');
 	            _gameBBListIndex++;
