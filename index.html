@@ -7,7 +7,6 @@
     <title>全民抢月饼</title>
     <meta charset="utf-8"/>
 	<meta name="viewport" content="initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, width=device-width,target-densitydpi=device-dpi"/>
-
     <script type="text/javascript">
         var isDesktop = navigator['userAgent'].match(/(ipad|iphone|ipod|android|windows phone)/i) ? false : true;
         var fontunit = isDesktop ? 20 : ((window.innerWidth > window.innerHeight ? window.innerHeight : window.innerWidth) / 320) * 10;
@@ -186,8 +185,7 @@ display: none;
 	    function gameInit() {
 	    	window.errsd = new Audio("err.wav");
 	    	window.endsd = new Audio("end.mp3");
-	    	window.tapsd = new Audio("tap.wav");
-	        gameRestart();
+	    	gameRestart();
 	    }
 	    function gameRestart() {
 	        console.log('gameRestart');
@@ -293,15 +291,12 @@ display: none;
 	            if (!_gameStart) {
 	                gameStart();
 	            }
-	            //createjs.Sound.play("tap");
-	            window.tapsd.play();
 	            tar = document.getElementById(p.id);
 	            tar.className = tar.className.replace(_ttreg, ' tt$1');
 	            _gameBBListIndex++;
 	            _gameScore++;
 	            gameLayerMoveNextRow();
 	        } else if (_gameStart && !tar.notEmpty) {
-	            //createjs.Sound.play("err");
 	            window.errsd.play();
 	            console.log(window.errsd);
 	            gameOver();
@@ -463,18 +458,14 @@ display: none;
 				<div style="font-size:2.2em; color:#fff; line-height:1.5em;">超不爽啊,有木有？<br/>今年公司又没有发月饼<br/>30秒内看谁抢的月饼多<br/></div><br/><br/>
 				<div id="ready-btn" class="btn loading" style="display:inline-block; margin:0 auto; width:8em; height:1.7em; line-height:1.7em; font-size:2.2em; color:#fff;"></div>
 			<br/><br/>
-		
-		
 			</div>
 		</div>
 	</div>
-
 	<div id="landscape" class="SHADE BOX-M" style="background:rgba(0,0,0,.9);">
 		<div class="welcome-bg FILL"></div>
 		<div id="landscape-text" style="color:#fff;font-size:3em;">请竖屏玩耍</div>
 	</div>
 
 	<div id="share-wx"><p style="text-align: right; padding-left: 10px;"><img src="img/2000.png" id="share-wx-img" style="max-width: 280px; padding-right: 25px;"></p></div>
-
 </body>
 </html>
