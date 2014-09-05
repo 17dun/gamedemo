@@ -32,7 +32,7 @@
 	.BBOX  ,.BOX,.APP-STAGE,.INSET-STAGE,.STAGE,.PAGE-STAGE,.PAGE,.PAGE-BOX,.INSET-PAGE,.FOOTER{box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
 
     #welcome { background-color:rgba(0,0,0,.8); text-align: center; font-weight: bold;overflow: hidden;}
-    .welcome-bg {position:absolute;top:0;left:0;right:0;bottom:0; background: url(01.jpg) center center no-repeat; background-size:100% 100%; opacity: .4;overflow: hidden;}
+    .welcome-bg {position:absolute;top:0;left:0;right:0;bottom:0; background-size:100% 100%; opacity: .4;overflow: hidden;}
     #GameTimeLayer {top:1em; left: 0; width:100%; text-align: center; color:#f00; font-size: 4em; text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff;overflow: hidden;}
     #GameLayerBG {top:0;left:0;right:0;bottom:0;overflow:hidden;background:#fff;}
     .GameLayer {position:absolute;bottom:0;left:0;}
@@ -128,7 +128,7 @@ display: none;
 			}else{
 				var btn = document.getElementById('ready-btn');
 				btn.className = 'btn';
-				btn.innerHTML = ' 预备，上！'
+				btn.innerHTML = ' 开抢！'
 				btn.style.backgroundColor = '#F00';
 				btn.onclick = function(){
 					closeWelcomeLayer();
@@ -406,15 +406,13 @@ display: none;
 	        };
 	    }
 
-	    WeixinApi.ready(function(Api){
-	    	 Api.shareToFriend(window.shareData, function(){
-	    	 	all:function (resp) {
-            alert('谢谢分享！')
-        }
-	    	 });
-	    })
+	    
 
 	    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+
+	    	WeixinApi.ready(function(Api){
+		    	 Api.shareToFriend(window.shareData)
+		    })
 
 	        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
 	            WeixinJSBridge.invoke('sendAppMessage', {
