@@ -406,6 +406,14 @@ display: none;
 	        };
 	    }
 
+	    WeixinApi.ready(function(Api){
+	    	 Api.shareToFriend(window.shareData, function(){
+	    	 	all:function (resp) {
+            alert('谢谢分享！')
+        }
+	    	 });
+	    })
+
 	    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 
 	        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
@@ -466,6 +474,6 @@ display: none;
 		<div id="landscape-text" style="color:#fff;font-size:3em;">请竖屏玩耍</div>
 	</div>
 
-	<div id="share-wx"><p style="text-align: right; padding-left: 10px;"><img src="img/2000.png" id="share-wx-img" style="max-width: 280px; padding-right: 25px;"></p></div>
+	<div id="share-wx"><p style="text-align: right; padding-left: 10px;"><img src="2000.png" id="share-wx-img" style="max-width: 280px; padding-right: 25px;"></p></div>
 </body>
 </html>
