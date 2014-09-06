@@ -145,7 +145,7 @@ display: none;
 				var btn = document.getElementById('ready-btn');
 				btn.className = 'btn';
 				btn.innerHTML = ' 开抢！'
-				btn.style.backgroundColor = '#F00';
+				btn.style.backgroundColor = 'rgb(201, 63, 63)';
 				btn.onclick = function(){
 					closeWelcomeLayer();
 				}
@@ -213,6 +213,11 @@ display: none;
 	        _gameTimeNum = 3000;
 	        GameTimeLayer.innerHTML = creatTimeText(_gameTimeNum);
 	        countBlockSize();
+
+	        document.getElementById('eatoff').style['height'] = blockSize+'px';
+	         document.getElementById('eatoff').style['lineHeight'] = blockSize+'px';
+
+
 	        refreshGameLayer(GameLayer[0]);
 	        refreshGameLayer(GameLayer[1], 1);
 	    }
@@ -314,7 +319,6 @@ display: none;
 	            gameLayerMoveNextRow();
 	        } else if (_gameStart && !tar.notEmpty) {
 	            window.errsd.play();
-	            console.log(window.errsd);
 	            gameOver();
 	            tar.className += ' bad';
 	        }
@@ -473,10 +477,14 @@ display: none;
 			<div style="margin:0 8% 0 9%;">
 				<div style="font-size:2.6em; color:#FEF002;">看谁月饼抢得多</div><br/>
 				<div style="font-size:2.2em; color:#fff; line-height:1.5em;">超不爽啊,有木有？<br/>今年公司又没有发月饼<br/>30秒内看谁抢的月饼多<br/></div><br/><br/>
-				<div id="ready-btn" class="btn loading" style="display:inline-block; margin:0 auto; width:8em; height:1.7em; line-height:1.7em; font-size:2.2em; color:#fff;"></div>
+				<div id="ready-btn" class="btn loading" style="display:inline-block; margin:0 auto; width:8em; height:2em; line-height:2em; font-size:2.2em; color:#fff;"></div>
 			<br/><br/>
 			</div>
 		</div>
+	</div>
+
+	<div id="eatoff" style="color:#fff;text-align:center;font-size:20px;width:100%;background:rgb(46, 44, 44);opacity:0.7;position:absolute;bottom:0;">
+		规则：点击最下面没有被吃的月饼
 	</div>
 	<div id="landscape" class="SHADE BOX-M" style="background:rgba(0,0,0,.9);">
 		<div class="welcome-bg FILL"></div>
