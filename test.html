@@ -109,10 +109,7 @@ display: none;
 
 	    };
 
-	    HTMLAudioElement.prototype.stop = function(){ 
-			this.pause(); 
-			this.currentTime = 0.0; 
-		} 
+	   
 	    var body, blockSize, GameLayer = [], GameLayerBG, touchArea = [], GameTimeLayer;
 	    var transform, transitionDuration;
 	    function init(argument) {
@@ -321,15 +318,14 @@ display: none;
 	            tar.className = tar.className.replace(_ttreg, ' tt$1');
 	            _gameBBListIndex++;
 	            _gameScore++;
-	            if(window.tapsd.ended){
-	            	window.tapsd.play();
+	            var tapsd = window.tapsd
+	            if(tapsd.ended){
+	            	tapsd.play();
 	            }else{
-	            	window.tapsd.stop();
-	            	window.tapsd.play();
+	            	tapsd.pause();
+	            	tapsd.currentTime = 0.0;
+	            	tapsd.play();
 	            }
-
-
-	            window.tapsd.play();
 	            gameLayerMoveNextRow();
 	        } else if (_gameStart && !tar.notEmpty) {
 	            window.errsd.play();
