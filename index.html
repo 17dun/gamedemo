@@ -109,6 +109,10 @@ display: none;
 
 	    };
 
+	    HTMLAudioElement.prototype.stop = function(){ 
+			this.pause(); 
+			this.currentTime = 0.0; 
+		} 
 	    var body, blockSize, GameLayer = [], GameLayerBG, touchArea = [], GameTimeLayer;
 	    var transform, transitionDuration;
 	    function init(argument) {
@@ -201,6 +205,8 @@ display: none;
 	    function gameInit() {
 	    	window.errsd = new Audio("err.wav");
 	    	window.endsd = new Audio("end.mp3");
+	    	window.tapsd0 = new Audio("tap1.wav");
+	    	window.tapsd1 = new Audio("tap0.wav");
 	    	gameRestart();
 	    }
 	    function gameRestart() {
@@ -316,6 +322,14 @@ display: none;
 	            tar.className = tar.className.replace(_ttreg, ' tt$1');
 	            _gameBBListIndex++;
 	            _gameScore++;
+	            console.log(_gameBBListIndex%2);
+	            if(_gameBBListIndex%2){
+	            	//window.tapsd1.stop();
+	            	window.tapsd0.play();
+	            }else{
+	            	//window.tapsd0.stop();
+	            	window.tapsd1.play();
+	            }
 	            gameLayerMoveNextRow();
 	        } else if (_gameStart && !tar.notEmpty) {
 	            window.errsd.play();
@@ -427,8 +441,6 @@ display: none;
 	            this.style.display = 'none';
 	        };
 	    }
-
-	    
 
 	    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 	        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
