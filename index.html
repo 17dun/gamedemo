@@ -364,7 +364,7 @@ display: none;
 	        }
 	        document.getElementById('GameScoreLayer-bast').innerHTML = '最佳&nbsp;&nbsp;' + bast;
 	        l.style.display = 'block';
-	        window.shareData.tTitle = share+'等你来挑战！！！'
+	        window.shareData.tContent = share+'等你来挑战！！！'
 	    }
 	    function hideGameScoreLayer() {
 	        var l = document.getElementById('GameScoreLayer');
@@ -383,15 +383,15 @@ display: none;
 		var gototop='http://182.254.209.32/game/';
 	    function shareText(score) {
 	        if (score <= 49)
-	            return '呵呵！我抢到了'+score+'个大月饼！\n还得继续加油哦!';
+	            return '呵呵！我抢到了'+score+'个大月饼！还得继续加油哦!\n';
 	        if (score <= 99)
-	            return '酷！我抢到了'+score+'个大月饼！亲，不错吧！';
+	            return '酷！我抢到了'+score+'个大月饼！亲，不错吧！\n';
 	        if (score <= 149)
-	            return '帅呆了！我抢到了'+score+'个大月饼！今年不用愁月饼啦!<br/>';
+	            return '帅呆了！我抢到了'+score+'个大月饼！今年不用愁月饼啦!\n';
 	        if (score <= 199)
-	            return '太牛了！我抢到了'+score+'个大月饼！<br/>亲，奥巴马和金正恩都惊呆了！<br/>';
+	            return '太牛了！我抢到了'+score+'个大月饼！亲，奥巴马和金正恩都惊呆了！\n';
 
-	        return '膜拜ing！我抢到了'+score+'个大月饼！<br/>我想我不是地球人！再也没人能超越我了！<br/>';
+	        return '膜拜ing！我抢到了'+score+'个大月饼！我想我不是地球人！再也没人能超越我了！\n';
 	    }
 
 	    function toStr(obj) {
