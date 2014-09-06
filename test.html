@@ -321,6 +321,14 @@ display: none;
 	            tar.className = tar.className.replace(_ttreg, ' tt$1');
 	            _gameBBListIndex++;
 	            _gameScore++;
+	            if(window.tapsd.ended){
+	            	window.tapsd.play();
+	            }else{
+	            	window.tapsd.stop();
+	            	window.tapsd.play();
+	            }
+
+
 	            window.tapsd.play();
 	            gameLayerMoveNextRow();
 	        } else if (_gameStart && !tar.notEmpty) {
