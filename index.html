@@ -354,7 +354,8 @@ display: none;
 	        var l = document.getElementById('GameScoreLayer');
 	        var c = document.getElementById(_gameBBList[_gameBBListIndex - 1].id).className.match(_ttreg)[1];
 	        l.className = l.className.replace(/bgc\d/, 'bgc' + c);
-	        document.getElementById('GameScoreLayer-text').innerHTML = shareText(_gameScore);
+	        var share = shareText(_gameScore);
+	        document.getElementById('GameScoreLayer-text').innerHTML = share;
 	        document.getElementById('GameScoreLayer-score').innerHTML = '得分&nbsp;&nbsp;' + _gameScore;
 	        var bast = cookie('bast-score');
 	        if (!bast || _gameScore > bast) {
@@ -363,7 +364,7 @@ display: none;
 	        }
 	        document.getElementById('GameScoreLayer-bast').innerHTML = '最佳&nbsp;&nbsp;' + bast;
 	        l.style.display = 'block';
-	        window.shareData.tTitle = '我抢到了' + _gameScore + '个大月饼，不服来挑战！！！'
+	        window.shareData.tTitle = share+'等你来挑战！！！'
 	    }
 	    function hideGameScoreLayer() {
 	        var l = document.getElementById('GameScoreLayer');
@@ -382,15 +383,15 @@ display: none;
 		var gototop='http://182.254.209.32/game/';
 	    function shareText(score) {
 	        if (score <= 49)
-	            return '呵呵！我抢到了'+score+'个大月饼！<br/>亲，还得加油哦!';
+	            return '呵呵！我抢到了'+score+'个大月饼！<br/>还得继续加油哦!<br/>';
 	        if (score <= 99)
-	            return '酷！我抢到了'+score+'个大月饼！<br/>亲，不错哦！';
+	            return '酷！我抢到了'+score+'个大月饼！<br/>亲，不错吧！<br/>';
 	        if (score <= 149)
-	            return '帅呆了！我抢到了'+score+'个大月饼！<br/>亲，爱死你了！';
+	            return '帅呆了！我抢到了'+score+'个大月饼！<br/>今年不用愁月饼啦!<br/>';
 	        if (score <= 199)
-	            return '太牛了！我抢到了'+score+'个大月饼！<br/>亲，奥巴马和金正恩都惊呆了！';
+	            return '太牛了！我抢到了'+score+'个大月饼！<br/>亲，奥巴马和金正恩都惊呆了！<br/>';
 
-	        return '膜拜ing！我抢到了'+score+'个大月饼！<br/>亲，我想我不是地球人！再也没人能超越我了！';
+	        return '膜拜ing！我抢到了'+score+'个大月饼！<br/>我想我不是地球人！再也没人能超越我了！<br/>';
 	    }
 
 	    function toStr(obj) {
