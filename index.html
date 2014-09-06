@@ -205,8 +205,7 @@ display: none;
 	    function gameInit() {
 	    	window.errsd = new Audio("err.wav");
 	    	window.endsd = new Audio("end.mp3");
-	    	window.tapsd0 = new Audio("tap1.wav");
-	    	window.tapsd1 = new Audio("tap0.wav");
+	    	window.tapsd = new Audio("tap0.wav");
 	    	gameRestart();
 	    }
 	    function gameRestart() {
@@ -325,10 +324,10 @@ display: none;
 	            console.log(_gameBBListIndex%2);
 	            if(_gameBBListIndex%2){
 	            	//window.tapsd1.stop();
-	            	window.tapsd0.play();
+	            	window.tapsd.play();
 	            }else{
 	            	//window.tapsd0.stop();
-	            	window.tapsd1.play();
+	            	window.tapsd.play();
 	            }
 	            gameLayerMoveNextRow();
 	        } else if (_gameStart && !tar.notEmpty) {
