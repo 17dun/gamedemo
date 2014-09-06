@@ -105,7 +105,7 @@ display: none;
 	    	"imgUrl": "http://182.254.209.32/game/haibao.png",
 	        "timeLineLink": "http://182.254.209.32/game",
 	        "tTitle": "全民疯狂抢月饼",
-	        "tContent": "公司不给力，中秋快来抢月饼！",
+	        "tContent": "公司不给力，中秋快来抢月饼！\n 分享到朋友圈，让大家一起来抢月饼吧！",
 
 	    };
 
@@ -364,7 +364,8 @@ display: none;
 	        }
 	        document.getElementById('GameScoreLayer-bast').innerHTML = '最佳&nbsp;&nbsp;' + bast;
 	        l.style.display = 'block';
-	        window.shareData.tContent = share+'等你来挑战！！！'
+	       	
+	        window.shareData.tTitle = share+'等你来挑战！！！'
 	    }
 	    function hideGameScoreLayer() {
 	        var l = document.getElementById('GameScoreLayer');
@@ -383,7 +384,7 @@ display: none;
 		var gototop='http://182.254.209.32/game/';
 	    function shareText(score) {
 	        if (score <= 49)
-	            return '呵呵！我抢到了'+score+'个大月饼！还得继续加油哦!\n';
+	            return '呜呜！我只抢到'+score+'个大月饼！还得继续加油哦!\n';
 	        if (score <= 99)
 	            return '酷！我抢到了'+score+'个大月饼！亲，不错吧！\n';
 	        if (score <= 149)
