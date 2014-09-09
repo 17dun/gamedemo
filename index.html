@@ -326,16 +326,8 @@ display: none;
 	            tar.className = tar.className.replace(_ttreg, ' tt$1');
 	            _gameBBListIndex++;
 	            _gameScore++;
-	            console.log(_gameBBListIndex%2);
-	            if(_gameBBListIndex%2){
-	            	//window.tapsd1.stop();
-	            	//window.tapsd.stop();
-	            	//window.tapsd.play();
-	            }else{
-	            	//window.tapsd0.stop();
-	            	//window.tapsd.stop();
-	            	//window.tapsd.play();
-	            }
+	             createjs.Sound.play("tap")
+	           
 	            gameLayerMoveNextRow();
 	        } else if (_gameStart && !tar.notEmpty) {
 	           // window.errsd.play();
