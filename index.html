@@ -8,6 +8,7 @@
     <meta charset="utf-8"/>
     <meta name="description" content="还等什么，快来参与抢月饼吧！" />
 	<meta name="viewport" content="initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, width=device-width,target-densitydpi=device-dpi"/>
+	<script type="text/javascript" src="soundjs-0.5.2.min.js"></script>
     <script type="text/javascript">
         var isDesktop = navigator['userAgent'].match(/(ipad|iphone|ipod|android|windows phone)/i) ? false : true;
         var fontunit = isDesktop ? 20 : ((window.innerWidth > window.innerHeight ? window.innerHeight : window.innerWidth) / 320) * 10;
@@ -206,6 +207,10 @@ display: none;
 	    	window.errsd = new Audio("err.wav");
 	    	window.endsd = new Audio("end.mp3");
 	    	window.tapsd = new Audio("tap0.wav");
+	    	createjs.Sound.registerSound({ src: "err.wav", id: "err" });
+	        createjs.Sound.registerSound({ src: "end.mp3", id: "end" });
+	        createjs.Sound.registerSound({ src: "tap0.wav", id: "tap" });
+
 	    	gameRestart();
 	    }
 	    function gameRestart() {
@@ -244,8 +249,8 @@ display: none;
 	            GameTimeLayer.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;时间到！';
 	            gameOver();
 	            GameLayerBG.className += ' flash';
-	            //createjs.Sound.play("end");
-	            window.endsd.play();
+	            createjs.Sound.play("end");
+	            //window.endsd.play();
 	        } else {
 	            GameTimeLayer.innerHTML = creatTimeText(_gameTimeNum);
 	        }
@@ -333,7 +338,8 @@ display: none;
 	            }
 	            gameLayerMoveNextRow();
 	        } else if (_gameStart && !tar.notEmpty) {
-	            window.errsd.play();
+	           // window.errsd.play();
+	            createjs.Sound.play("err");
 	            gameOver();
 	            tar.className += ' bad';
 	        }
